@@ -111,33 +111,37 @@ class Board extends React.Component {
 			return false;
 	}
 
+	//take win if can, else rand
 	cpuTurn(x,b) {
-		//take win if can, else rand
+
+		//rows
 		for(var i = 0; i < 3; i++) {
-			var rs = 0;
+			var s = 0;
 			var empty = false;
 			var ei, ej = 0;
 			for(var j = 0; j < 3; j++) {
 				if (b[i][j] === x)
-					rs++;
+					s++;
 				else if (b[i][j] === 0) {
 					empty = true;
 					ei = i;
 					ej = j;
 				}
 			}
-			if (rs == 2 && empty) {
+			if (s === 2 && empty) {
 				console.log("cpu win row")
 				b[ei][ej] = x;
 				return b;
 			}
 		}
 		
-		for(var i = 0; i < 3; i++) {
-			var s = 0;
-			var empty = false;
-			var ei, ej = 0;
-			for(var j = 0; j < 3; j++) {
+		//cols
+		for(i = 0; i < 3; i++) {
+			s = 0;
+			empty = false;
+			ei = 0;
+			ej = 0;
+			for(j = 0; j < 3; j++) {
 				if (b[j][i] === x)
 					s++;
 				else if (b[j][i] === 0) {
@@ -146,34 +150,88 @@ class Board extends React.Component {
 					ej = j;
 				}
 			}
-			if (s == 2 && empty) {
+			if (s === 2 && empty) {
 				console.log("cpu win col")
 				b[ej][ei] = x;
 				return b;
 			}
 		}
 
-		//check the diagonal
-		var s = 0;
-		var empty = false;
-		var ei, ej = 0;
-		if (b[0][0] === x)
-			s++;
-		if (b[1][1] === x)
-			s++;
-		if (b[2][2] === x)
-			s++
-
-		if (b[0][0] === x)
-			s++;
-		if (b[1][1] === x)
-			s++;
-		if (b[2][2] === x)
-			s++
+		//diagonal
+		s = 0;
+		empty = false;
+		ei = 0;
+		ej = 0;
 		
+		if (b[0][0] === x)
+			s++;
+		else if (b[0][0] === 0) {
+			empty = true;
+			ei = 0;
+			ej = 0;
+		}
+
+		if (b[1][1] === x)
+			s++;
+		else if (b[1][1] === 0) {
+			empty = true;
+			ei = 1;
+			ej = 1;
+		}
+		
+		if (b[2][2] === x)
+			s++
+		else if (b[2][2] === 0) {
+			empty = true;
+			ei = 2;
+			ej = 2;
+		}
+		
+		if (s === 2 && empty) {
+			console.log("cpu win diag left")
+			b[ei][ej] = x;
+			return b;
+		}
+
+		s = 0;
+		empty = false;
+		ei = 0;
+		ej = 0;
+		
+		if (b[2][0] === x)
+			s++;
+		else if (b[2][0] === 0) {
+			empty = true;
+			ei = 2;
+			ej = 0;
+		}
+
+		if (b[1][1] === x)
+			s++;
+		else if (b[1][1] === 0) {
+			empty = true;
+			ei = 1;
+			ej = 1;
+		}
+		
+		if (b[0][2] === x)
+			s++
+		else if (b[0][2] === 0) {
+			empty = true;
+			ei = 0;
+			ej = 2;
+		}
+		
+		if (s === 2 && empty) {
+			console.log("cpu win diag right")
+			b[ei][ej] = x;
+			return b;
+		}
+
+		//rand
 		while (1) {
-			var i = Math.floor(Math.random() * 3);
-			var j = Math.floor(Math.random() * 3);
+			i = Math.floor(Math.random() * 3);
+			j = Math.floor(Math.random() * 3);
 			//console.log("ci " + i);
 			//console.log("cj " + j);
 			if (b[i][j] === 0) {
