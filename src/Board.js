@@ -2,6 +2,8 @@ import React from 'react';
 import Cell from './Cell';
 import './Board.css';
 
+//reset the game
+
 //click on button, and whole thing rerenders
 /*[1,1,1],
   [1,1,1],
@@ -15,7 +17,8 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			score: 0,
+			pscore: 0,
+			cscore: 0,
 			turn: 0,
 			board: [[0,0,0],
 					[0,0,0],
@@ -57,26 +60,43 @@ class Board extends React.Component {
 			var bxs = this.state.boxes + 1;
 			
 			var go = false;
+			var ps  = this.state.pscore;
+			var cs = this.state.cscore;
 
 			//did we win yet
 			go = this.checkWin(1, b,bxs);
+			if (go) {
+				ps++;
+			}
 
 			//cpu moves
 			if (this.state.boxes < 8 && !go) {
 				b = this.cpuTurn(2, b);
 				bxs++;
 				go = this.checkWin(2, b,bxs);
+				if (go) {
+					cs++;
+				}
 			}
 
 			//not sure when to put this
 			this.setState(state => ({
     			board: b,
-    			boxes: bxs
+    			boxes: bxs,
+    			pscore: ps,
+    			cscore: cs
   			}));
 
   			if (go || bxs >= 9) {
-  				console.log('game over')
+  				console.log('game over');
   				//reset baord
+  				this.setState(state => ({
+    				board: [[0,0,0],
+						    [0,0,0],
+						    [0,0,0]
+			   			   ],
+    				boxes: 0
+  				}));
   				//reset gs
   				//drop down winner banner
   			}
@@ -251,7 +271,6 @@ class Board extends React.Component {
 
 		//renders twice
 		//console.log("render score " + this.state.score)
-		this.id = 0;
 		
 		//map here is not defined cuz it only works on arrays
 		/*const items = this.state.board.map(
@@ -260,7 +279,14 @@ class Board extends React.Component {
 			)
 		);*/
 
+		this.id = 0;
+
 		return(
+			<div>
+			<div className='Score' style={{color: 'black'}}>
+				<p>Player {this.state.pscore}</p>
+				<p>CPU {this.state.cscore}</p>
+			</div>
 			<div className="Board" onClick={(e)=>{this.handleClick(e)}} >
 				<Cell id={this.id++} value={this.state.board[0][0]} />
 				<Cell id={this.id++} value={this.state.board[0][1]} />
@@ -271,6 +297,7 @@ class Board extends React.Component {
 				<Cell id={this.id++} value={this.state.board[2][0]} />
 				<Cell id={this.id++} value={this.state.board[2][1]} />
 				<Cell id={this.id++} value={this.state.board[2][2]} />
+			</div>
 			</div>
 		);
 	}
