@@ -4,4 +4,11 @@
 	background-color: grey;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+
+	
+  	
+}
+
+.Score {
+	align-self: left;
 }

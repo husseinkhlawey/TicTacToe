@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from './Cell';
+import GameOver from './GameOver'
 import './Board.css';
 
 //reset the game
@@ -27,7 +28,8 @@ class Board extends React.Component {
 		    difficulty: "easy",
 		    gameState: "play",
 		    mode: 'dark',
-		    boxes: 0
+		    boxes: 0,
+		    winner: 'player'
 		}
 		this.id = 0;
 		this.i = 0;
@@ -62,11 +64,15 @@ class Board extends React.Component {
 			var go = false;
 			var ps  = this.state.pscore;
 			var cs = this.state.cscore;
+			var gs = this.state.gameState;
+			var winner = this.state.winner;
 
 			//did we win yet
 			go = this.checkWin(1, b,bxs);
 			if (go) {
 				ps++;
+				gs = 'over';
+				winner = 'player';
 			}
 
 			//cpu moves
@@ -76,6 +82,8 @@ class Board extends React.Component {
 				go = this.checkWin(2, b,bxs);
 				if (go) {
 					cs++;
+					gs = 'over';
+					winner = 'cpu';
 				}
 			}
 
@@ -95,7 +103,9 @@ class Board extends React.Component {
 						    [0,0,0],
 						    [0,0,0]
 			   			   ],
-    				boxes: 0
+    				boxes: 0,
+    				gameState: gs,
+    				winner: winner
   				}));
   				//reset gs
   				//drop down winner banner
@@ -280,27 +290,63 @@ class Board extends React.Component {
 		);*/
 
 		this.id = 0;
-
 		return(
 			<div>
-			<div className='Score' style={{color: 'black'}}>
-				<p>Player {this.state.pscore}</p>
-				<p>CPU {this.state.cscore}</p>
-			</div>
-			<div className="Board" onClick={(e)=>{this.handleClick(e)}} >
-				<Cell id={this.id++} value={this.state.board[0][0]} />
-				<Cell id={this.id++} value={this.state.board[0][1]} />
-				<Cell id={this.id++} value={this.state.board[0][2]} />
-				<Cell id={this.id++} value={this.state.board[1][0]} />
-				<Cell id={this.id++} value={this.state.board[1][1]} />
-				<Cell id={this.id++} value={this.state.board[1][2]} />
-				<Cell id={this.id++} value={this.state.board[2][0]} />
-				<Cell id={this.id++} value={this.state.board[2][1]} />
-				<Cell id={this.id++} value={this.state.board[2][2]} />
-			</div>
+				<GameOver result={this.state.winner} />
+				
+				<div className='Score' style={{color: 'black'}}>
+					<p>Player {this.state.pscore}</p>
+					<p>CPU {this.state.cscore}</p>
+				</div>
+
+				<div className="Board" onClick={(e)=>{this.handleClick(e)}} >
+					<Cell id={this.id++} value={this.state.board[0][0]} />
+					<Cell id={this.id++} value={this.state.board[0][1]} />
+					<Cell id={this.id++} value={this.state.board[0][2]} />
+					<Cell id={this.id++} value={this.state.board[1][0]} />
+					<Cell id={this.id++} value={this.state.board[1][1]} />
+					<Cell id={this.id++} value={this.state.board[1][2]} />
+					<Cell id={this.id++} value={this.state.board[2][0]} />
+					<Cell id={this.id++} value={this.state.board[2][1]} />
+					<Cell id={this.id++} value={this.state.board[2][2]} />
+				</div>
+
 			</div>
 		);
+
+		//want the game to pause after displaying victory screen
+		if (this.state.gameState === 'over') {
+			//sleep 2 sec before clearing screen
+			this.timerID = setInterval(() => this.update(), 300);
+			setTimeout(2000);
+			console.log('timed');
+		}
 	}
+
+	/*myfunc() {
+		var r = $.Deferred();
+
+		console.log("test timeout func")
+
+		setTimeout(function () {
+	    	// and call `resolve` on the deferred object, once you're done
+	    	r.resolve();
+	  	}, 2500);
+
+	  	// return the deferred object
+  		return r;
+	}
+
+	// define FunctionTwo as needed
+	functionTwo = function () {
+	  console.log('FunctionTwo');
+	};
+
+	// call FunctionOne and use the `done` method
+	// with `FunctionTwo` as it's parameter
+	myfunc().done(FunctionTwo);*/
+
+
 }
 
 export default Board;

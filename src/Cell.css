@@ -1,0 +1,19 @@
+svg {
+	
+}
+
+.Cell {
+	
+}
+
+.circle {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	animation: stroke 1.5s ease-out forwards;
+}
+
+@keyframes stroke {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
