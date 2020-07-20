@@ -5,7 +5,6 @@ class Cell extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		this.state = { value: "" };
 	}
 
 	componentDidMount() {
@@ -35,7 +34,7 @@ class Cell extends React.Component {
 					</div>);
 		}
 		else
-			return(<div id={this.props.id}>{"lol idk"}</div>);
+			return(<div id={this.props.id}>Cell Error</div>);
 	}
 }
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import './GameOver.css';
 
+import { faRedoAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class GameOver extends React.Component {
 	
 	constructor(props) {
@@ -9,18 +12,39 @@ class GameOver extends React.Component {
 
 	render() {
 
-		if (this.props.result === '')
+		if (this.props.winner === '') {
 			return(<></>);
+		}
 
-		else if (this.props.result === 'player')
-			return(<div className='GameOver'>{'player wins!'}</div>);
+		else if (this.props.winner === 'player') {
+			return(
+				<div className='GameOver'>
+					<div>You win!</div>
+					<div>Play again?</div>
+					<FontAwesomeIcon icon={faRedoAlt} />
+				</div>
+			);
+		}
 
-		else if (this.props.result === 'cpu')
-			return(<div className='GameOver'><p>{'cpu wins!'}</p></div>);
+		else if (this.props.winner === 'cpu') {
+			return(
+				<div className='GameOver'>
+					<div>CPU wins!</div>
+					<div>Play again?</div>
+					<FontAwesomeIcon icon={faRedoAlt} />
+				</div>
+			);
+		}
 
-		else
-			return(<div className='GameOver'><p>{'wut its over?'}</p></div>);
-
+		else {
+			return(
+				<div className='GameOver'>
+					<div>Error</div>
+					<div>Play again?</div>
+					<FontAwesomeIcon icon={faRedoAlt} />
+				</div>
+			);
+		}
 	}
 }
 

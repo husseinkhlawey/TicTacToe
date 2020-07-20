@@ -2,13 +2,10 @@
 	width:600px;
 	height:600px;
 	background-color: grey;
-	display: grid;
+	display: inline-grid;
 	grid-template-columns: repeat(3, 1fr);
-
-	
-  	
 }
 
-.Score {
-	align-self: left;
+.BoardWrapper {
+	display: inline-block;
 }

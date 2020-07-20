@@ -1,15 +1,17 @@
 svg {
-	
-}
-
-.Cell {
-	
+	position: absolute;
 }
 
 .circle {
 	stroke-dasharray: 1000;
 	stroke-dashoffset: 1000;
 	animation: stroke 1.5s ease-out forwards;
+}
+
+.line {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	animation: stroke 2.5s linear forwards;
 }
 
 @keyframes stroke {

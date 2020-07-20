@@ -1,0 +1,4 @@
+.Score, .PlayerScore, .CpuScore {
+	display: inline-block;
+	margin: auto;
+}
