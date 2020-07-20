@@ -2,3 +2,17 @@
 	z-index: 9;
 	margin: auto;
 }
+
+.button {
+	background:    #15d798;
+	border-radius: 11px;
+	padding:       15px 35px;
+	color:         #ffffff;
+	font:          normal bold 26px/1 "Open Sans", sans-serif;
+	cursor: pointer;
+	border-style: none;
+}
+
+svg.svg-inline--fa.fa-redo-alt.fa-w-16 {
+    position: static;
+}

@@ -1,17 +1,24 @@
+.Cell {
+	background-color: #4d4f54; /*222326*/
+	border-radius: 11px;
+}
+
 svg {
 	position: absolute;
+
 }
 
 .circle {
 	stroke-dasharray: 1000;
 	stroke-dashoffset: 1000;
 	animation: stroke 1.5s ease-out forwards;
+	animation-delay: 0.5s;
 }
 
 .line {
 	stroke-dasharray: 1000;
 	stroke-dashoffset: 1000;
-	animation: stroke 2.5s linear forwards;
+	animation: stroke 1.5s linear forwards;
 }
 
 @keyframes stroke {

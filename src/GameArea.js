@@ -5,17 +5,21 @@ import GameOver from './GameOver';
 import './GameArea.css';
 
 /*
+  [0,0,0],
+  [0,0,0],
+  [0,0,0]
+  
   [1,1,1],
   [1,1,1],
   [1,1,1]
 
-  [0,0,0],
-  [0,0,0],
-  [0,0,0]
-
   [2,2,2],
   [2,2,2],
   [2,2,2]
+
+  [1,2,1],
+  [2,1,2],
+  [2,0,0]
 */
 
 class GameArea extends React.Component {
@@ -27,8 +31,8 @@ class GameArea extends React.Component {
 			cscore: 0,
 			turn: 0,
 			board: [[0,0,0],
-				    [0,0,0],
-				    [0,0,0]
+  					[0,0,0],
+  					[0,0,0]
 				   ],
 		    difficulty: "easy",
 		    gameState: "play",
@@ -75,7 +79,7 @@ class GameArea extends React.Component {
 			var winner = this.state.winner;
 
 			//can simple check if winner == ''
-			go = this.checkWin(1, b,bxs);
+			go = this.checkWin(1, b, bxs);
 			if (go) {
 				ps++;
 				gs = 'over';
@@ -86,12 +90,17 @@ class GameArea extends React.Component {
 			if (this.state.boxes < 8 && !go) {
 				b = this.cpuTurn(2, b);
 				bxs++;
-				go = this.checkWin(2, b,bxs);
+				go = this.checkWin(2, b, bxs);
 				if (go) {
 					cs++;
 					gs = 'over';
 					winner = 'cpu';
 				}
+			}
+
+			if (bxs >= 9 && !go) {
+				gs = 'draw';
+				winner = 'draw';
 			}
 
 			//not sure when to put this
@@ -101,13 +110,13 @@ class GameArea extends React.Component {
     			pscore: ps,
     			cscore: cs,
     			gameState: gs,
-    			winner: winner
+    			winner: winner,
   			}));
 		}
 	}
 
 	resetGame() {
-		if (this.state.gameState === 'over' || this.state.boxes >= 9) {
+		if (this.state.gameState === 'over' || this.state.gameState === 'draw' || this.state.boxes >= 9) {
 			console.log('game over');
 			//reset baord
 			this.setState(state => ({
@@ -293,7 +302,6 @@ class GameArea extends React.Component {
 
 				<Board
 					board={this.state.board}
-					gameState={this.state.props}
 				/>
 
 				<div onClick={this.resetGame} style={{margin: 'auto'}} >

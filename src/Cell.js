@@ -2,37 +2,39 @@ import React from 'react';
 import './Cell.css';
 
 class Cell extends React.Component {
-	
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-	}
 
 	render() {
 
 		//conditional rendering
 		if (this.props.value === 0) {
-			return(<div id={this.props.id}></div>);
+			return(
+				<div id={this.props.id} className='Cell' >
+
+				</div>
+			);
 		}
 
 		else if (this.props.value === 1) {
-			return(<div id={this.props.id} className='Cell'>
-						<svg xmlns="http://www.w3.org/2000/svg" height="200" width="200" style={{backgroundColor:"lightgrey"}}>
-							<line className='line' x1="0" y1="0" x2="200" y2="200" style={{stroke:'blue', strokeWidth:3}} />
-							<line className='line' x1="200" y1="0" x2="0" y2="200" style={{stroke:'blue', strokeWidth:3}} />
-						</svg>
-					</div>);
+			return(
+				<div id={this.props.id} className='Cell'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="186" height="186" style={{backgroundColor:""}}>
+						<line className='line' x1="15" y1="20" x2="170" y2="170" style={{stroke:'4f74d1', strokeWidth:5}} />
+						<line className='line' x1="170" y1="20" x2="15" y2="170" style={{stroke:'4f74d1', strokeWidth:5}} />
+					</svg>
+				</div>
+			);
 		}
 
 		else if (this.props.value === 2) {
-			return(<div id={this.props.id} className='Cell'>
-						<svg xmlns="http://www.w3.org/2000/svg" height="200" width="200" style={{backgroundColor:"lightgrey"}}>
-							<circle className="circle" cx="100" cy="100" r="95" stroke="red" strokeWidth="3" fill="none" />
-						</svg>
-					</div>);
+			return(
+				<div id={this.props.id} className='Cell'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" style={{backgroundColor:""}}>
+						<circle className="circle" cx="95" cy="95" r="80" style={{stroke:"c96767", strokeWidth:"5"}} fill="none" />
+					</svg>
+				</div>
+			);
 		}
+
 		else
 			return(<div id={this.props.id}>Cell Error</div>);
 	}

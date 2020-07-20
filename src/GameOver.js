@@ -20,8 +20,9 @@ class GameOver extends React.Component {
 			return(
 				<div className='GameOver'>
 					<div>You win!</div>
-					<div>Play again?</div>
-					<FontAwesomeIcon icon={faRedoAlt} />
+					<button className="button" >
+						<FontAwesomeIcon icon={faRedoAlt}/>
+					</button>
 				</div>
 			);
 		}
@@ -30,8 +31,20 @@ class GameOver extends React.Component {
 			return(
 				<div className='GameOver'>
 					<div>CPU wins!</div>
-					<div>Play again?</div>
-					<FontAwesomeIcon icon={faRedoAlt} />
+					<button className="button" style={{background:'#c94d4d'}} >
+						<FontAwesomeIcon icon={faRedoAlt}/>
+					</button>
+				</div>
+			);
+		}
+
+		else if (this.props.winner === 'draw') {
+			return(
+				<div className='GameOver'>
+					<div>Draw!</div>
+					<button className="button" style={{background:'#918e8e'}} >
+						<FontAwesomeIcon icon={faRedoAlt}/>
+					</button>
 				</div>
 			);
 		}
