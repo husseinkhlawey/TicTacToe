@@ -30,14 +30,14 @@ class GameArea extends React.Component {
 			pscore: 0,
 			cscore: 0,
 			turn: 0,
-			board: [[0,0,0],
-  					[0,0,0],
-  					[0,0,0]
+			board: [[1,2,1],
+  [2,1,2],
+  [2,0,0]
 				   ],
 		    difficulty: "easy",
 		    gameState: "play",
 		    mode: 'dark',
-		    boxes: 0,
+		    boxes: 7,
 		    winner: ''
 		}
 		

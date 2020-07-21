@@ -5,7 +5,7 @@
 
 svg {
 	position: absolute;
-
+	
 }
 
 .circle {
@@ -22,6 +22,36 @@ svg {
 }
 
 @keyframes stroke {
+	from  {
+		stroke-dashoffset: 1000;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@-webkit-keyframes stroke {
+	from  {
+		stroke-dashoffset: 1000;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@-moz-keyframes stroke {
+	from  {
+		stroke-dashoffset: 1000;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@-o-keyframes stroke {
+	from {
+		stroke-dashoffset: 1000;
+	}
 	to {
 		stroke-dashoffset: 0;
 	}
