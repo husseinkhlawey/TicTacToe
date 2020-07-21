@@ -10,12 +10,6 @@ class Board extends React.Component {
 	}
 
 	render() {
-
-		//renders twice
-		//console.log("render score " + this.state.score)
-		
-		//<div className='BoardWrapper'>
-
 		this.id = 0;
 		return(
 			<div className="Board" >

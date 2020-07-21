@@ -11,7 +11,6 @@ class GameOver extends React.Component {
 		if (this.props.winner === '') {
 			return(<></>);
 		}
-
 		else if (this.props.winner === 'player') {
 			return(
 				<div className='GameOver'>
@@ -22,7 +21,6 @@ class GameOver extends React.Component {
 				</div>
 			);
 		}
-
 		else if (this.props.winner === 'cpu') {
 			return(
 				<div className='GameOver'>
@@ -33,7 +31,6 @@ class GameOver extends React.Component {
 				</div>
 			);
 		}
-
 		else if (this.props.winner === 'draw') {
 			return(
 				<div className='GameOver'>
@@ -44,11 +41,10 @@ class GameOver extends React.Component {
 				</div>
 			);
 		}
-
 		else {
 			return(
 				<div className='GameOver'>
-					<div>Error</div>
+					<div>GO Error</div>
 					<div>Play again?</div>
 					<FontAwesomeIcon icon={faRedoAlt} />
 				</div>
