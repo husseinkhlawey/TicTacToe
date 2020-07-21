@@ -5,10 +5,6 @@ import { faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class GameOver extends React.Component {
-	
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 

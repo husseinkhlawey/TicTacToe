@@ -3,10 +3,6 @@ import './Score.css';
 
 class Score extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return(
 			<div className='Score'>
